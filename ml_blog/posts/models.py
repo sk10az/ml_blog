@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -6,7 +7,9 @@ class Category(models.Model):
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
 
-    name = models.CharField(max_length=255)
+    user = models.ForeignKey(
+        User, on_delete=models.SET_NULL, null=True, blank=True)
+    name = models.CharField(max_length=100, null=False, blank=False)
     surname = models.CharField(max_length=255)
     email = models.EmailField()
     registration_date = models.DateTimeField(auto_now_add=True)
