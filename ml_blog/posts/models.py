@@ -10,12 +10,9 @@ class Category(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True, blank=True)
     name = models.CharField(max_length=100, null=False, blank=False)
-    surname = models.CharField(max_length=255)
-    email = models.EmailField()
-    registration_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.name} {self.surname}'
+        return f'{self.name}'
 
 
 class Author(models.Model):
@@ -45,7 +42,7 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return self.title
+        return self.description
 
 
 class Comment(models.Model):
