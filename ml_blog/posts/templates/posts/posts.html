@@ -76,7 +76,7 @@
                         <p>{{post.description | truncatechars:100 }}</p>
                     </div>
 
-                 <a href="" class="btn btn-outline-dark btn-sm m-1">View</a>
+                    <a href="{% url 'post' post.id %}" class="btn btn-outline-dark btn-sm m-1">View</a>
 
                 </div>
             </div>
