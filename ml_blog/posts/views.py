@@ -30,7 +30,7 @@ def post(request, id):
     return render(request, 'posts/post.html', {'post': post})
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def posts(request):
     user = request.user
     category = request.GET.get('category')

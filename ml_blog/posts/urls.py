@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+
 urlpatterns = [
     path('', views.posts, name='posts'),
 
@@ -10,4 +11,6 @@ urlpatterns = [
 
     path('post/<str:pk>/', views.viewPost, name='post'),
     # path('add/', views.addPhoto, name='add'),
+
+
 ]

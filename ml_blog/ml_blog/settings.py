@@ -40,7 +40,12 @@ INSTALLED_APPS = [
 
     "posts.apps.PostsConfig",
 
-    "storages"
+    "storages",
+    "ckeditor",
+    "ckeditor_uploader",
+
+    'admin_interface',
+    'colorfield',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +77,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "ml_blog.wsgi.application"
+
+ADMIN_INTERFACE_SETTINGS = {
+    'theme': 'Django', # выбор светлой темы
+    'menu': 'horizontal',
+    'order': [
+        # ...
+    ],
+    'collapsible': False,
+    'search': False,
+    'messages': False,
+}
 
 
 # Database
@@ -120,16 +136,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 MEDIA_URL = '/images/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
 
-MEDIA_ROOT = BASE_DIR / 'static/images'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-
+# CKEDITOR_BASEPATH = "/ml_blog/staticfiles/ckeditor/ckeditor/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

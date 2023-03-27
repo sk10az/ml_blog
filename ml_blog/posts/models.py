@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 class Category(models.Model):
     class Meta:
@@ -35,14 +37,18 @@ class Post(models.Model):
         verbose_name_plural = 'Posts'
 
     title = models.CharField(max_length=255)
-    description = models.TextField()
+    content = RichTextField(blank=True, null=True)
+    media = RichTextUploadingField(blank=True, null=True)
     pub_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='posts', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
 
+    def comments(self):
+        return Comment.objects.filter(post=self)
+
     def __str__(self):
-        return self.description
+        return self.content
 
 
 class Comment(models.Model):
