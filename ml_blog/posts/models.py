@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
+
 class Category(models.Model):
     class Meta:
         verbose_name = 'Category'
@@ -56,7 +57,7 @@ class Comment(models.Model):
         verbose_name = 'Comment'
         verbose_name_plural = 'Comments'
 
-    author = models.CharField(max_length=255)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
     text = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)

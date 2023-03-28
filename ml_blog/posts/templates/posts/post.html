@@ -1,46 +1,39 @@
 <!doctype html>
-<html lang="en">
+{% extends 'posts/base.html' %}
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>post</title>
-
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    {% block title %}
+    Home - {{ block.super }}
+    {% endblock %}
 </head>
 
 <body class="m-5">
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col">
+{% block content %}
 
-            <a href="{% url 'posts' %}" class="btn btn-dark my-3">Go Back</a>
+<div class="row justify-content-center">
+    <div class="col">
 
-            <div style="height: 90vh; ">
-                <!--                    <img style="max-width: 100%; max-height: 500px; float: left; padding-right: 10px" src="{{post.image.url}}">-->
+        <a href="{% url 'posts' %}" class="btn btn-dark my-3">Go Back</a>
 
-                <p>{{post.content|safe}}</p>
+        <div style="height: 90vh; ">
+            <!--                    <img style="max-width: 100%; max-height: 500px; float: left; padding-right: 10px" src="{{post.image.url}}">-->
+
+            <p>{{post.content|safe}}</p>
 
 
-
-
-            </div>
-          {% for comment in post.comments %}
-                <div class="comment">
-                    <p><strong>{{ comment.author }}</strong></p>
-                    <p>{{ comment.text }}</p>
-                    <p>{{ comment.pub_date }}</p>
-                </div>
-                {% empty %}
-                <p>No comments yet.</p>
-                {% endfor %}
         </div>
+        {% for comment in post.comments %}
+        <div class="comment">
+            <p><strong>{{ comment.author }}</strong></p>
+            <p>{{ comment.text }}</p>
+            <p>{{ comment.pub_date }}</p>
+        </div>
+        {% empty %}
+        <p>No comments yet.</p>
+        {% endfor %}
     </div>
 </div>
+{% endblock %}
 
 </body>
 
-</html>

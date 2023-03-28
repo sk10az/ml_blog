@@ -78,16 +78,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "ml_blog.wsgi.application"
 
-ADMIN_INTERFACE_SETTINGS = {
-    'theme': 'Django', # выбор светлой темы
-    'menu': 'horizontal',
-    'order': [
-        # ...
-    ],
-    'collapsible': False,
-    'search': False,
-    'messages': False,
-}
+# ADMIN_INTERFACE_SETTINGS = {
+#     'theme': 'Just Code Admin', # выбор светлой темы
+#     'menu': 'horizontal',
+#     'order': [
+#         # ...
+#     ],
+#     'collapsible': False,
+#     'search': False,
+#     'messages': False,
+# }
 
 
 # Database
