@@ -5,7 +5,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from .forms import *
-
+from django.views.generic.detail import DetailView
+# from hitcount import HitCountDetailView
 
 def viewPost(request, pk):
     post = Post.objects.get(id=pk)
@@ -98,3 +99,10 @@ def post_detail(request, pk):
         related_posts = Post.objects.filter(category=post.category).exclude(pk=pk)
     context = {'post': post, 'related_posts': related_posts}
     return render(request, 'posts/post_detail.html', context)
+
+
+class PostDetailView():
+    model = Post
+    template_name = "posts/post.html"
+    slug_field = "slug"
+    count_hit = True

@@ -28,6 +28,7 @@ urlpatterns = [
     path('', include('posts.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     # path('upload/', upload, name='ckeditor_upload'),
+    path(r'hitcount/', include('hitcount.urls', namespace='hitcount')),
 ]
 
 

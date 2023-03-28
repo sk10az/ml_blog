@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'colorfield',
 
     'django_filters',
+    'hitcount',
 ]
 
 MIDDLEWARE = [

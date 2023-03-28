@@ -23,10 +23,12 @@ class CustomUserCreationForm(UserCreationForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['text', 'post']
+        fields = ('content', )
 
-    author = forms.ModelChoiceField(widget=forms.HiddenInput, queryset=User.objects.all())
+    content = forms.CharField(widget=forms.Textarea(attrs={
+        'rows': '4',
+    }))
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['post'].widget = forms.HiddenInput()
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['post'].widget = forms.HiddenInput()
