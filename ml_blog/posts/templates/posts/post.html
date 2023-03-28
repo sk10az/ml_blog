@@ -3,7 +3,7 @@
 
 <head>
     {% block title %}
-    Home - {{ block.super }}
+    {{post.title}} - {{ block.super }}
     {% endblock %}
 </head>
 
@@ -16,7 +16,7 @@
         <a href="{% url 'posts' %}" class="btn btn-dark my-3">Go Back</a>
 
         <div style="height: 90vh; ">
-            <!--                    <img style="max-width: 100%; max-height: 500px; float: left; padding-right: 10px" src="{{post.image.url}}">-->
+            <!--<img style="max-width: 100%; max-height: 500px; float: left; padding-right: 10px" src="{{post.image.url}}">-->
 
             <p>{{post.content|safe}}</p>
 

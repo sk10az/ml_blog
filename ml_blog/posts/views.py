@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Category, Post, Author, Comment
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from .forms import *
 
 
@@ -69,3 +70,31 @@ def registerUser(request):
 
     context = {'form': form, 'page': page}
     return render(request, 'posts/login_register.html', context)
+
+
+def search_results(request):
+    query = request.GET.get('query')
+    results = Post.objects.filter(Q(title__icontains=query) | Q(content__icontains=query))
+    context = {'results': results}
+    return render(request, 'posts/search_results.html', context)
+
+
+def post_list(request):
+    query = request.GET.get('query')
+    if query:
+        posts = Post.objects.filter(Q(title__icontains=query) | Q(content__icontains=query))
+    else:
+        posts = Post.objects.all()
+    context = {'posts': posts}
+    return render(request, 'posts/post_list.html', context)
+
+
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    query = request.GET.get('query')
+    if query:
+        related_posts = Post.objects.filter(Q(title__icontains=query) | Q(content__icontains=query)).exclude(pk=pk)
+    else:
+        related_posts = Post.objects.filter(category=post.category).exclude(pk=pk)
+    context = {'post': post, 'related_posts': related_posts}
+    return render(request, 'posts/post_detail.html', context)

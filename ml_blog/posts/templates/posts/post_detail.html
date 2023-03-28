@@ -1,0 +1,10 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <form action="{% url 'post_detail' post.pk %}" method="get">
+        <input type="text" name="query" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
+    <p>{{ post.content }}</p>
+{% endblock %}
